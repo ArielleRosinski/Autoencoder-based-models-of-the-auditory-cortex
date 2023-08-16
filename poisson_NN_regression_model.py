@@ -60,22 +60,18 @@ time_lag=30
 burn_in=30 
 
 #Get A1 responses (estimation and validation data)
-def get_spikes_est(file, full_raster_file = True, cell_id=None):
+def get_spikes_est(file, cell_id=None):
     spikes_est = file.T
-    if full_raster_file is False:
-        spikes_est = spikes_est.reshape(-1, 20)
-        spikes_est = torch.tensor(np.sum(spikes_est, axis=1))
-        spikes_est = spikes_est[:,None]
-    else: 
-        spikes_est = spikes_est[:,cell_id,np.newaxis]
-        spikes_est = spikes_est.reshape(-1, 20)
-        spikes_est = torch.tensor(np.sum(spikes_est, axis=1))
-        spikes_est = spikes_est[:,None]
+   
+    
+    spikes_est = spikes_est[:,cell_id,np.newaxis]
+    spikes_est = spikes_est.reshape(-1, 20)
+    spikes_est = torch.tensor(np.sum(spikes_est, axis=1))
+    spikes_est = spikes_est[:,None]
     return spikes_est
 
-def get_spikes_val(file, full_raster_file = True, cell_id=None):
+def get_spikes_val(file, cell_id=None):
     spikes_val = file
-
     spikes_val = spikes_val[:,cell_id,np.newaxis,:]
     spikes_val = np.mean(spikes_val, axis=0).T
     spikes_val = spikes_val.reshape(-1, 20)
@@ -100,7 +96,7 @@ x_input = x_comp[:,1350:,:].squeeze()
 x_input = torch.tensor(x_input)
 
 
-spikes_est = get_spikes_est(resp, full_raster_file = True, cell_id=cell_id)
+spikes_est = get_spikes_est(resp, cell_id=cell_id)
 for param in ls_lambda: 
     ls_NN_temp = []
 
@@ -138,7 +134,7 @@ for param in ls_lambda:
 
     r2_training_temp = r2_score(y.detach().numpy(), y_pred_temp.detach().numpy())
     
-    spikes_val = get_spikes_val(resp_val, full_raster_file = True, cell_id=cell_id)
+    spikes_val = get_spikes_val(resp_val, cell_id=cell_id)
 
     x_val = x_comp[:,:1325,:].squeeze()                
     x_val = torch.tensor(x_val)
