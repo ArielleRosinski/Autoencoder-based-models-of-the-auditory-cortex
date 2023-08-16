@@ -17,10 +17,9 @@ import torch.optim as optim
 from torch.utils.data import Dataset,DataLoader
 from torchvision import transforms
 
-from forest_sound_dataset import SoundDataset,SoundDataset_kfold
-from AE_architectures_6_2_2023 import AE_RNN_burn_in, AE_RNN_burn_in2,AE_RNN_burn_in3
-from AE_architectures_7_4_2023 import AE_RNN_test #,AE_RNN_test2
-from AE_architectures_conv_13_6_2023 import AE_Conv_Decoder
+from sound_dataset import SoundDataset, SoundDataset_kfold
+from AE_architectures import AE_RNN
+
 
 #Get files (i.e., cochleagrams)
 path="/nfs/gatsbystor/arosinski/msc_project/full_coch_np"
@@ -138,7 +137,7 @@ if not os.path.exists(save_path):
     os.makedirs(save_path)
 
 #Training
-model = AE_RNN_test(time_lag=time_lag, hidden_size=hidden_size).float() 
+model = AE_RNN(time_lag=time_lag, hidden_size=hidden_size).float() 
 model=model.to(device)
 
 loss_function=nn.MSELoss()

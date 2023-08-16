@@ -19,10 +19,9 @@ import torch.optim as optim
 from torch.utils.data import Dataset,DataLoader
 from torchvision import transforms
 
-from forest_sound_dataset import SoundDataset,SoundDataset_kfold
-from AE_architectures_7_4_2023 import AE_RNN_test
-from AE_architectures_6_2_2023 import AE_RNN_burn_in
-from AE_architectures_conv_13_6_2023 import AE_Conv_Decoder
+from sound_dataset import SoundDataset
+from AE_architectures import AE_RNN
+
 
 """ Calculating STRFs using ridge regression with L2 weight regularization. 30 dynamic random chord stimuli, each lasting for 200000 ms (i.e., 10000 chords), were used for STRF estimation in MSc project  """
 
@@ -39,7 +38,7 @@ hidden_size= int(sys.argv[5])
 print ("Argument List:", str(sys.argv))
 
 
-model = AE_Conv_Decoder(hidden_size=hidden_size, time_lag=time_lag, burn_in=burn_in).float()
+model = AE_RNN(hidden_size=hidden_size, time_lag=time_lag, burn_in=burn_in).float()
 model.load_state_dict(torch.load(model_path, map_location=device))
 
 parent_dir="/nfs/gatsbystor/arosinski/msc_project/"

@@ -20,9 +20,8 @@ import torch.optim as optim
 from torch.utils.data import Dataset,DataLoader
 from torchvision import transforms
 
-from forest_sound_dataset import SoundDataset,SoundDataset_kfold
-from AE_architectures_7_4_2023 import AE_RNN_test , AE_LSTM_test
-from dense_nn_5_7_2023 import NN
+from AE_architectures import AE_RNN
+from dense_nn import NN
 
 
 model_path= str(sys.argv[1]) 
@@ -87,7 +86,7 @@ def get_spikes_val(file, full_raster_file = True, cell_id=None):
 
 #Get hidden unit activity
 device = torch.device('cpu')
-model = AE_RNN_test(time_lag=time_lag, burn_in=burn_in, hidden_size=hidden_size).float()
+model = AE_RNN(time_lag=time_lag, burn_in=burn_in, hidden_size=hidden_size).float()
 model.load_state_dict(torch.load(model_path, map_location=device))
 x=(model.encoder(full_sound_input_tensor.float(),initialization=None)[0]).detach().numpy()    #x_shape = (1, 44475, 128)
 x_comp = x[:,:-25,:]

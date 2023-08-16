@@ -19,11 +19,8 @@ import torch.optim as optim
 from torch.utils.data import Dataset,DataLoader
 from torchvision import transforms
 
-from forest_sound_dataset import SoundDataset,SoundDataset_kfold
-from AE_architectures_6_2_2023 import AE_RNN_burn_in, AE_RNN_burn_in2,AE_RNN_burn_in3
-from AE_architectures_7_4_2023 import AE_RNN_test , AE_LSTM_test
-from AE_architectures_conv_13_6_2023 import AE_Conv_Decoder
-from dense_nn_5_7_2023 import NN
+from AE_architectures import AE_RNN
+from dense_nn import NN
 
 #Get output from regression models
 Poisson = True
@@ -82,7 +79,7 @@ burn_in=30
 
 #Get hidden Unit Activity
 device = torch.device('cpu')
-model = AE_RNN_test(time_lag=time_lag, burn_in=burn_in, hidden_size=hidden_size).float()
+model = AE_RNN(time_lag=time_lag, burn_in=burn_in, hidden_size=hidden_size).float()
 model_path="/nfs/gatsbystor/arosinski/msc_project/models/model_pre_training_128_hu.pt"
 model.load_state_dict(torch.load(model_path, map_location=device))
 x=(model.encoder(full_sound_input_tensor.float(),initialization=None)[0]).detach().numpy()  
