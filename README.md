@@ -14,7 +14,7 @@ The files it contains are:
 
 (5) "poisson_NN_regression_model.py": implementation of the Poisson LN and NN linking hypotheses to predict ferret A1 data. 
 
-(6) "dense_nn.py": file generating the 3-layer (NN) or 1-layer (LN) neural networks for the Poisson-based linkng hypotheses. 
+(6) "dense_nn.py": file generating the 3-layer (NN) or 1-layer (LN) neural networks for the Poisson-based linking hypotheses. 
 
 (7) "PCA_model.py". Convolution of the cochleagram matrix from Pennington & David (2023) with the principal components to obtain time-varying traces that can be used to predict the ferret A1 PSTHs.
 
