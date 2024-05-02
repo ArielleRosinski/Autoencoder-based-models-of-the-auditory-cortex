@@ -18,3 +18,5 @@ The files it contains are:
 
 (7) "PCA_model.py". Convolution of the cochleagram matrix from Pennington & David (2023) with the principal components to obtain time-varying traces that can be used to predict the ferret A1 PSTHs.
 
+(8) "prediction_correlation.py" and "prediction_correlation_PCA.py": computing prediction correlation scores from Poisson LN or NN linking hypotheses for autoencoders and PCA-based models, respectively. 
+
