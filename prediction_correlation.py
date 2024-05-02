@@ -23,6 +23,8 @@ from sound_dataset import SoundDataset_kfold
 from AE_architectures import AE_RNN
 from dense_nn import NN
 
+from load_pd_data.py import *
+
 cell_ids = np.arange(816) 
 
 path = "/path to elements saved after running poisson_NN_regression_model.py"
@@ -82,22 +84,6 @@ model_path="/path to trained .pt model"
 model.load_state_dict(torch.load(model_path, map_location=device))
 x=(model.encoder(full_sound_input_tensor.float(),initialization=None)[0]).detach().numpy()    #x_shape = (1, activity time bins, hidden units=128)
 x_comp = x[:,:-25,:]
-
-def get_spikes_val(file, cell_id=None):
-    spikes_val = np.load(file)                                      #(20, 816, 26500)
-    spikes_val = spikes_val[:,cell_id,np.newaxis,:]                 #(20, 1, 26500)           
-    spikes_val = np.mean(spikes_val, axis=0).T                      #(26500, 1)         
-    spikes_val = spikes_val.reshape(-1, 20)                         #(1325, 20)  
-    spikes_val = torch.tensor(np.sum(spikes_val, axis=1))           #torch.Size([1325])
-    spikes_val = spikes_val[:,None]                                 #torch.Size([1325, 1])
-    return spikes_val
-
-def get_spikes_val_single_pres(file, cell_id):
-    spikes_val = np.load(file)                                      #(20, 816, 26500)
-    spikes_val = spikes_val[:,cell_id,np.newaxis,:]                 #(20, 1, 26500)
-    spikes_val = spikes_val.reshape(spikes_val.shape[0], -1, 20)
-    spikes_val = np.sum(spikes_val, axis=2)                         #(20, 1325)
-    return spikes_val
 
 ls_pred_corr =[]
 

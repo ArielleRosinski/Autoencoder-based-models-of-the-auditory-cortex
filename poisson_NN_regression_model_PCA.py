@@ -23,10 +23,10 @@ from torchvision import transforms
 from AE_architectures import AE_RNN
 from dense_nn import NN
 
+from load_pd_data.py import *
+
 
 model_path= str(sys.argv[1]) 
-resp = np.load(str(sys.argv[2]))   
-resp_val = np.load(str(sys.argv[3]))  
 cell_id = int(sys.argv[7])
 folder_name = str(sys.argv[8])
 
@@ -59,26 +59,6 @@ hidden_size=128
 time_lag=30 
 burn_in=30 
 
-#Get A1 responses (estimation and validation data)
-def get_spikes_est(file, cell_id=None):
-    spikes_est = file.T
-   
-    
-    spikes_est = spikes_est[:,cell_id,np.newaxis]
-    spikes_est = spikes_est.reshape(-1, 20)
-    spikes_est = torch.tensor(np.sum(spikes_est, axis=1))
-    spikes_est = spikes_est[:,None]
-    return spikes_est
-
-def get_spikes_val(file, cell_id=None):
-    spikes_val = file
-    spikes_val = spikes_val[:,cell_id,np.newaxis,:]
-    spikes_val = np.mean(spikes_val, axis=0).T
-    spikes_val = spikes_val.reshape(-1, 20)
-    spikes_val = torch.tensor(np.sum(spikes_val, axis=1))
-    spikes_val = spikes_val[:,None]
-    return spikes_val
-
 
 #Get time-varying PCA-model produced activity
 pc_pred = np.load("/nfs/nhome/live/arosinski/msc_project_files/pennington_david_files/pc_pred_scrambled.npy")
@@ -91,7 +71,7 @@ x_input = pc_pred.T
 x_input = torch.tensor(x_input[1321:,:]).float()  
 
 
-spikes_est = get_spikes_est(resp, cell_id=cell_id)
+spikes_est = get_spikes_est("/path to raster_cells_est.npy", cell_id=cell_id)
 for param in ls_lambda: 
     ls_NN_temp = []
 
@@ -129,7 +109,7 @@ for param in ls_lambda:
 
     r2_training_temp = r2_score(y.detach().numpy(), y_pred_temp.detach().numpy())
     
-    spikes_val = get_spikes_val(resp_val, cell_id=cell_id)
+    spikes_val = get_spikes_val("/path to raster_cells_val.npy", cell_id=cell_id)
 
     spikes_val = spikes_val[29:,:]
     
