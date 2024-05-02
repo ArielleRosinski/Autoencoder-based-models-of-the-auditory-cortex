@@ -1,4 +1,7 @@
 import numpy as np
+import torch
+import torch.nn as nn
+
 
 def get_spikes_est(file, cell_id=None):
     spikes_est = np.load(file).T    
