@@ -158,6 +158,10 @@ for epoch in range(T):
     for batch in train_loader:
         image = batch[0].float().to(device)
 
+        #For a time-scrambled model:
+        #idx = torch.randperm(image.shape[-1]) 
+        #image = image[:,:,:, idx]
+
         #Initialize initial hidden state of encoder RNN to zeros
         initialization=torch.zeros((1,image.shape[0],hidden_size)).to(device)
                 
