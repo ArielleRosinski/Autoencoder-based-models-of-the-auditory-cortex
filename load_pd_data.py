@@ -1,3 +1,5 @@
+import numpy as np
+
 def get_spikes_est(file, cell_id=None):
     spikes_est = np.load(file).T    
     spikes_est = spikes_est[:,cell_id,np.newaxis]                   #(862000, 816 --> 1)
