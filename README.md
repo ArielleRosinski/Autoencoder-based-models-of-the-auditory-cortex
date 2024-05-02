@@ -2,7 +2,7 @@
 This repository contains the code used for MSc Project "An Autoencoder-based Model of Biological Auditory
 Representation Learning".
 
-The files it contains are:
+The files it contains include:
 
 (1) "model_training.py": main file used to train the autoencoder model. Note that running the code will require changing the paths to the cochleagram data, and to the other .py files used. 
 
@@ -20,3 +20,4 @@ The files it contains are:
 
 (8) "prediction_correlation.py" and "prediction_correlation_PCA.py": computing prediction correlation scores from Poisson LN or NN linking hypotheses for autoencoders and PCA-based models, respectively. 
 
+(9) "PCA_pennington_david.ipynb": get PCs from Pennington & David (2023) sounds (as a cochleagram). 
