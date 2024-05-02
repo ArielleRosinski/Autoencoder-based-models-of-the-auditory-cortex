@@ -1,0 +1,2 @@
+ArrayTaskID	model_path	resp	resp_val	ni	no	nh	cell_id	folder_name	reg_lambda	method
+1	/nfs/gatsbystor/arosinski/msc_project/runs/rnn_pennington_david/pennington_david_full_dataset/model_final_regularizer_None_lambda_0.0_fold_0.pt	/nfs/nhome/live/arosinski/msc_project_files/pennington_david_files/raster_cells_est.npy	/nfs/nhome/live/arosinski/msc_project_files/pennington_david_files/raster_cells_val.npy	128	1	None	0	NN_poisson_PC_nn	1e-2,1e-3,1e-4,1e-5,1e-6,1e-7,1e-8,1e-9,0	nn

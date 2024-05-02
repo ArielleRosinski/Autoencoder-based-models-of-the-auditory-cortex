@@ -1,0 +1,11 @@
+ArrayTaskID   regularizer      reg_lambda     fold_id       hidden_units        exp_decay       folder_name                         time_lag           
+1             None             0              0             128                 True            model_save_path                     30  
+
+
+
+
+
+
+
+
+
