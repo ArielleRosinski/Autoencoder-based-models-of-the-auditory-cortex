@@ -12,7 +12,7 @@ The files it contains are:
 
 (4) "get_STRFs.py": code to compute the spectrotemporal receptive fields (STRFs) of the autoencoder hidden units.
 
-(5) "poisson_NN_regression_model.py": implementation of the Poisson LN and NN linking hypotheses to predict ferret A1 data. 
+(5) "poisson_NN_regression_model.py" and "poisson_NN_regression_model_PCA.py": implementation of the Poisson LN and NN linking hypotheses to predict ferret A1 data for autoencoders and PCA-based models, respectively. 
 
 (6) "dense_nn.py": file generating the 3-layer (NN) or 1-layer (LN) neural networks for the Poisson-based linking hypotheses. 
 
