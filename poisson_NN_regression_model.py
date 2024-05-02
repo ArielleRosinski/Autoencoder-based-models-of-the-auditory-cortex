@@ -23,7 +23,7 @@ from torchvision import transforms
 from AE_architectures import AE_RNN
 from dense_nn import NN
 
-from load_pd_data.py import *
+from load_pd_data import *
 
 
 model_path= str(sys.argv[1])  

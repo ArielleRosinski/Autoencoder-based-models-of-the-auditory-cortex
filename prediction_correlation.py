@@ -23,7 +23,7 @@ from sound_dataset import SoundDataset_kfold
 from AE_architectures import AE_RNN
 from dense_nn import NN
 
-from load_pd_data.py import *
+from load_pd_data import *
 
 cell_ids = np.arange(816) 
 
