@@ -20,6 +20,6 @@ The files it contains include:
 
 (8) "prediction_correlation.py" and "prediction_correlation_PCA.py": computing prediction correlation scores from Poisson LN or NN linking hypotheses for autoencoders and PCA-based models, respectively. 
 
-(9) "PCA_pennington_david.ipynb": get PCs from Pennington & David (2023) sounds (as a cochleagram). 
+(9) "PCA_pennington_david.ipynb": get PCs from natural sounds (as a cochleagram). 
 
 (10) "Gaussian_linear_training_and_prediction_correlation.ipynb" implementation of the Gaussian Linear linking hypotheses to predict ferret A1 data, as well as computing prediction correlation scores. 
